@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
-const latestVersion = require('latest-version')
+const logSymbols = require('log-symbols')
 const program = require('commander')
 const inquirer = require('inquirer')
+const chalk = require('chalk')
 const glob = require('glob')
 const path = require('path')
 const fs = require('fs')
@@ -93,9 +94,11 @@ function init() {
   }).then(context => {
     return generator(context.metadata, context.downloadTemp, path.parse(context.downloadTemp).dir)
   }).then(context => {
-    console.log(context)
+    console.log()
+    console.log(logSymbols.success, chalk.green('创建成功 :)'))
+    console.log()
   }).catch(err => {
-    console.error(err)
+    console.error(logSymbols.error, chalk.red(`创建失败：${error.message}`))
   })
 }
 
