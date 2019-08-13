@@ -1,0 +1,21 @@
+{
+  "name": "test-cli",
+  "version": "1.0.0",
+  "description": "实验脚手架",
+  "main": "index.js",
+  "bin": {
+    "macaw": "./bin/test.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^3.0.0",
+    "download-git-repo": "^2.0.0"
+  },
+  "devDependencies": {
+    "glob": "^7.1.4"
+  }
+}
