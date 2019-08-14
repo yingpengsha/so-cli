@@ -10,33 +10,31 @@ const fs = require('fs')
 
 const download = require('../lib/download')
 const generator = require('../lib/generator')
+const templateList = require('../lib/list')
 
-program.usage('<project-name>')
-.option('-r, --repository [repository]', 'assign to repository')
-.parse(process.argv)
+program
+  .usage('<project-name>')
+  .parse(process.argv)
 
-// 根据输入，获取项目名称
 let projectName = program.args[0]
 
 if (!projectName) {
-  // project-name为空，显示--help
   program.help() 
   return
 }
 
-const list = glob.sync('*')  // 遍历当前目录
+const list = glob.sync('*')
 
 let rootName = path.basename(process.cwd())
 let next
 
 if (list.length) {
-  // 判断当前目录里面是否有输入的 projectName 目录
   if (list.some(name => {
-      const fileName = path.resolve(process.cwd(), path.join('.', name))
-      const isDir = fs.statSync(projectName).isDirectory()
+    const fileName = path.resolve(process.cwd(), path.join('.', name))  
+    const isDir = fs.statSync(fileName).isDirectory()
       return name.indexOf(projectName) !== -1 && isDir
     })) {
-    console.log(`项目 ${projectName} 已经存在`)
+    console.log(logSymbols.error, chalk.red(`${projectName} directory is exist`))
     return
   }
   next = Promise.resolve(projectName)
@@ -45,60 +43,65 @@ if (list.length) {
   next = inquirer.prompt([
     {
       name: 'buildInCurrent',
-      message: '当前目录为空，且目录名称和项目名称相同，是否直接在当前目录下创建新项目？',
+      message: 'The current directory is empty and the directory name is the same as the project name. Do you want to create a new project directly in the current directory?',
       type: 'confirm',
       default: true
     }
   ]).then(answer => {
+    if (!answer.buildInCurrent) { return }
     return Promise.resolve(answer.buildInCurrent ? '.' : projectName)
   })
 } else {
   next = Promise.resolve(projectName)
 }
 
+
+
 function init() {
   next.then(projectRoot => {
-    if (projectRoot !== '.') {
-      fs.mkdirSync(projectRoot)
-    }
-    return download(projectRoot).then(target => {
-      return {
-        name: projectRoot,
-        root: projectRoot,
-        downloadTemp: target
-      }
-    })
-  }).then(context => {
     return inquirer.prompt([
       {
+        type: 'list',
+        message: 'Please select a template:',
+        name: 'templateName',
+        choices: Object.keys(templateList)
+      },
+      {
         name: 'projectName',
-    	  message: '项目的名称',
-        default: context.name
+    	  message: 'Project Name:',
+        default: projectName
       }, {
         name: 'projectVersion',
-        message: '项目的版本号',
+        message: 'Project Version',
         default: '1.0.0'
       }, {
         name: 'projectDescription',
-        message: '项目的简介',
-        default: `A project named ${context.name}`
+        message: 'Project description',
+        default: `A project named ${projectName}`
       }
     ]).then(answers => {
-      return {
-        ...context,
-        metadata: {
-          ...answers
-        }
+      if (projectRoot !== '.') {
+        fs.mkdirSync(projectRoot)
       }
+      return download(projectRoot, templateList[answers.templateName]).then(target => {
+        return {
+          name: projectRoot,
+          root: projectRoot,
+          downloadTemp: target,
+          metadata: {
+            ...answers
+          }
+        }
+      })
     })
   }).then(context => {
     return generator(context.metadata, context.downloadTemp, path.parse(context.downloadTemp).dir)
   }).then(context => {
     console.log()
-    console.log(logSymbols.success, chalk.green('创建成功 :)'))
+    console.log(logSymbols.success, chalk.green('Created successfully :)'))
     console.log()
   }).catch(err => {
-    console.error(logSymbols.error, chalk.red(`创建失败：${error.message}`))
+    console.error(logSymbols.error, chalk.red(`Fail：${error.message}`))
   })
 }
 
