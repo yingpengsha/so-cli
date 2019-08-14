@@ -1,15 +1,15 @@
 {
-  "name": "test-cli",
+  "name": "so-cli",
   "version": "1.0.0",
-  "description": "实验脚手架",
-  "main": "index.js",
+  "description": "根据模版快速生成项目",
+  "main": "./bin/test",
   "bin": {
-    "macaw": "./bin/test.js"
+    "so": "./bin/so.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Pengsha Ying",
   "license": "ISC",
   "dependencies": {
     "commander": "^3.0.0",
