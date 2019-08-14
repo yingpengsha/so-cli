@@ -1,25 +1,31 @@
 {
   "name": "so-cli",
-  "version": "1.0.0",
-  "description": "根据模版快速生成项目",
-  "main": "./bin/test",
+  "version": "1.1.0",
+  "description": "You can quickly generate projects from templates",
+  "main": "./bin/so.js",
   "bin": {
     "so": "./bin/so.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Pengsha Ying",
-  "license": "ISC",
+  "author": "Pengsha Ying https://github.com/yingpengsha",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yingpengsha/so-cli.git"
+  },
+  "keywords": [
+    "command-tool",
+    "scaffolding tools",
+    "template"
+  ],
   "dependencies": {
     "commander": "^3.0.0",
-    "fs-extra": "^8.1.0"
-  },
-  "devDependencies": {
+    "fs-extra": "^8.1.0",
     "glob": "^7.1.4",
     "handlebars": "^4.1.2",
     "inquirer": "^6.5.1",
-    "latest-version": "^5.1.0",
     "log-symbols": "^3.0.0",
     "metalsmith": "^2.3.0",
     "ora": "^3.4.0"

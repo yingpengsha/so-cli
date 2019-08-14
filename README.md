@@ -1,11 +1,11 @@
 # so-cli
 
-根据模版快速生成项目
+You can quickly generate projects from templates
 
 ## Install
 
 ```
-npm install -g so-cli
+yarn global add so-cli
 ```
 
 ## Usage
