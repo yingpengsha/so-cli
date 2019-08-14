@@ -1,7 +1,7 @@
-const templateList = require('../lib/list')
+const fs = require('fs')
 
-templateKeys = Object.keys(templateList);
+const templateList = fs.readdirSync('../lib/template')
 
-templateKeys.forEach(key => {
-  console.log(`  ${key}`)
+templateList.forEach(name => {
+  console.log(`  ${name}`)
 });

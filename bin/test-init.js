@@ -10,7 +10,7 @@ const fs = require('fs')
 
 const download = require('../lib/download')
 const generator = require('../lib/generator')
-const templateList = require('../lib/list')
+const templateList = fs.readdirSync('../lib/template')
 
 program
   .usage('<project-name>')
@@ -64,7 +64,7 @@ function init() {
         type: 'list',
         message: 'Please select a template:',
         name: 'templateName',
-        choices: Object.keys(templateList)
+        choices: templateList
       },
       {
         name: 'projectName',
@@ -83,7 +83,7 @@ function init() {
       if (projectRoot !== '.') {
         fs.mkdirSync(projectRoot)
       }
-      return download(projectRoot, templateList[answers.templateName]).then(target => {
+      return download(projectRoot, answers.templateName).then(target => {
         return {
           name: projectRoot,
           root: projectRoot,
@@ -100,7 +100,7 @@ function init() {
     console.log()
     console.log(logSymbols.success, chalk.green('Created successfully :)'))
     console.log()
-  }).catch(err => {
+  }).catch(error => {
     console.error(logSymbols.error, chalk.red(`Fail：${error.message}`))
   })
 }
