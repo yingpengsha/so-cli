@@ -11,7 +11,7 @@ yarn global add so-cli
 ## Usage
 
 ```
-Usage: so <command> [project-name]
+Usage: so <command> <project-name>
 
 Options:
   -v, --version  output the version number
