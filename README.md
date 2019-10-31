@@ -4,6 +4,8 @@
 
 You can quickly generate projects from templates
 
+![example](https://user-images.githubusercontent.com/37143265/67916421-9995a000-fbd0-11e9-977f-e4af5f8b594d.png)
+
 </div>
 
 ## Install
@@ -29,5 +31,4 @@ Commands:
 
 ## Template
 
-- React
 - Vue

@@ -1,6 +1,6 @@
 {
   "name": "so-cli",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "You can quickly generate projects from templates",
   "main": "./bin/so",
   "bin": {
