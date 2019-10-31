@@ -24,4 +24,6 @@ yarn run build
 
 
 ## Other
+
 Power by [yingpengsha](https://github.com/yingpengsha) from [Fearless Studio](https//github.com/Fearless-Studio)
+Generate by [so-cli](https://www.npmjs.com/package/so-cli)
