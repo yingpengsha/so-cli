@@ -1,4 +1,4 @@
-# vue3.0-template
+# vue-template
 
 ## Project setup
 ```
@@ -25,5 +25,5 @@ yarn run build
 
 ## Other
 
-Power by [yingpengsha](https://github.com/yingpengsha) from [Fearless Studio](https//github.com/Fearless-Studio)
+Power by [yingpengsha](https://github.com/yingpengsha) from [Fearless Studio](https//github.com/Fearless-Studio)<br>
 Generate by [so-cli](https://www.npmjs.com/package/so-cli)
