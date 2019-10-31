@@ -1,6 +1,10 @@
-# so-cli
+<div align="center">
+
+# So-cli 🔨
 
 You can quickly generate projects from templates
+
+</div>
 
 ## Install
 
@@ -26,3 +30,4 @@ Commands:
 ## Template
 
 - React
+- Vue

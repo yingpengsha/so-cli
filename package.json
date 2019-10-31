@@ -2,9 +2,9 @@
   "name": "so-cli",
   "version": "1.2.0",
   "description": "You can quickly generate projects from templates",
-  "main": "./bin/so.js",
+  "main": "./bin/so",
   "bin": {
-    "so": "./bin/so.js"
+    "so": "./bin/so"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
